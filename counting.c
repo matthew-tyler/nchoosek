@@ -3,14 +3,21 @@
 #include <stdlib.h>
 
 /*
+A version of the factorial formula from here:
+https://en.wikipedia.org/wiki/Binomial_coefficient#Factorial_formula
+*/
+int64_t factorial(int n, int k)
+{
+}
 
+/*
 A version of the multiplicitave formula as shown on the wikipedia:
 https://en.wikipedia.org/wiki/Binomial_coefficient#Multiplicative_formula
  */
 int64_t multiplicative(int n, int k)
 {
 
-    if (k < 0 || k > n)
+    if (k < 0 || n == 0 || k > n)
     {
         return 0;
     }
@@ -20,11 +27,15 @@ int64_t multiplicative(int n, int k)
         return 1;
     }
 
+    if ((n - k) < k)
+    {
+        k = (n - k);
+    }
     int64_t result = 1;
 
-    for (int i = 1; i <= k; ++i)
+    for (int i = 1; i <= k; i++)
     {
-        result *= (n - i + 1) / i;
+        result = result * (n - i + 1) / i;
     }
 
     return result;
@@ -33,7 +44,7 @@ int64_t multiplicative(int n, int k)
 int main(int argc, char const *argv[])
 {
 
-    int64_t test = multiplicative(66, 33);
+    int64_t test = multiplicative(10, 7);
 
     printf("%ld\n", test);
 
