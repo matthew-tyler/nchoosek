@@ -10,10 +10,10 @@ if [ $? -ne 0 ]; then
 fi
 
 # Run the compiled counting program with input file 2.in
-./counting < 2.in > 2.out
+./counting < ./testdata/2.in > ./testdata/2.out
 
 # Diff the output with the expected output
-diff 2.out 2.ans > /dev/null
+diff ./testdata/2.out ./testdata/2.ans > /dev/null
 
 # Check if diff was successful
 if [ $? -eq 0 ]; then
