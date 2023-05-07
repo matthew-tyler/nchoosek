@@ -30,7 +30,14 @@ uint64_t multiplicative(uint64_t n, uint64_t k)
     for (uint64_t i = 1; i <= k; i++)
     {
 
-        result = result / i * n + result % i * n / i;
+        // n^k / k! = n(n-1)(n-2)...(n-(k-1)) / k(k-1)(k-2)...1
+        // is equal to: for i to k product of  n + 1 - i / i
+        //
+        // Division can be applied before the multilication, however
+        // that might produce a real number result. As the final number
+        // is always an integer, we can account for the same oppration
+        // on the remainder if there is one.
+        result = ((result / i) * n) + (((result % i) * n) / i);
         n--;
     }
 
@@ -43,8 +50,6 @@ int main(int argc, char const *argv[])
     char inputBuffer[1024];
     uint64_t n;
     uint64_t k;
-
-    // 80 59
 
     while (fgets(inputBuffer, sizeof(inputBuffer), stdin))
     {
