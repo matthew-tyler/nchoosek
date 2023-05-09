@@ -11,9 +11,8 @@ The lack of reference to a proof proved difficult as there was not even a citati
 
 Starting with the factorial implementation, we know for sure that this will overflow, even if the final answer may fit.
 
-                    n!
-    C(n, k) = -----------
-                k! (n - k)!
+$${n \choose k} = \frac{n!}{k!(n-k)!}$$
+
 
 If we expand the factorials and cancel common terms we get the multiplicative formula.
 
