@@ -16,18 +16,13 @@ $${n \choose k} = \frac{n!}{k!(n-k)!}$$
 
 If we expand the factorials and cancel common terms we get the multiplicative formula.
 
-                n (n - 1) (n - 2) ... (n - k + 1)
-    C(n, k) = ---------------------------------
-                    k (k - 1) (k - 2) ... 1
+$${n \choose k} = \frac{n(n - 1)(n - 2)\ldots(n - k + 1)}{k(k - 1)(k - 2)\ldots1}$$
 
 
 If we express the numerator of n^k̲ as a falling factorial power we get a more efficient way of computing specific coefficients:
 
-                    k
-                =====
-    C(n, k) =   | |      n + 1 - i
-                | |      -----------
-                n = 1          i
+
+$${n \choose k} = \prod_{i=1}^{k} \frac{n + 1 - i}{i}$$
 
 
 We can think about this in terms of Pascal's triangle:
@@ -56,8 +51,8 @@ we can overflow during the multiplication even though the division by i may resu
 
 Ideally, we should do our division first, then multiply. This ensures we keep our intermediary values as small as possible.
 
-                    /n\
-                    \k/
+                /n\
+                \k/
     C(n, k) = --------- (n - k)
                 k + 1
 
@@ -69,10 +64,8 @@ ints than a long.
 
 The other option is to stick to integer division and account for the remainder in a separate step:
 
-                    /n\                    /n\
-                    \k/                  ( \k/ mod (k+1) ) (n-k)
-    C(n, k) = (---------) (n - k) +  ------------------------
-                    k + 1                         k + 1
+
+$${n \choose k} = \lbrack\frac{{n \choose k}}{k + 1}\rbrack (n - k) + \frac{\lbrack{n \choose k} \mod (k+1)\rbrack (n-k)}{k + 1}$$
 
 
 Here we achieve this by first doing the lefthand side, assuming integer division we will lose the precision on any division that has a remainder,
