@@ -51,10 +51,7 @@ we can overflow during the multiplication even though the division by i may resu
 
 Ideally, we should do our division first, then multiply. This ensures we keep our intermediary values as small as possible.
 
-                /n\
-                \k/
-    C(n, k) = --------- (n - k)
-                k + 1
+$${n \choose k} = \frac{{n \choose k}}{k + 1} (n - k)$$
 
 
 This introduces a problem. Although we can guarantee that our numbers are ultimately integers after the multiplication is applied,
